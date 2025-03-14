@@ -1,0 +1,301 @@
+<!-- GlobalPassport Landing Page - Section 1: Base Styles + Navbar -->
+<style>
+  /* Base and Reset Styles */
+  .gp-container {
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+  }
+  
+  .gp-section {
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Remove underlines from all links and buttons */
+  .gp-btn, a {
+    text-decoration: none !important;
+  }
+  
+  /* Prevent horizontal overflow */
+  body, html {
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Fixed navbar styles - Updated to match design */
+  .gp-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 0.75rem 0;
+    background-color: #f0f4ff;
+    transition: all 0.3s ease;
+  }
+  
+  .gp-navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .gp-navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #1e293b;
+    text-decoration: none !important;
+  }
+  
+  .gp-navbar-brand svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: #2563eb;
+  }
+  
+  .gp-navbar-links {
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    .gp-navbar-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin: 0 auto;
+    }
+    
+    .gp-navbar-container {
+      position: relative;
+    }
+  }
+  
+  .gp-navbar-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1e293b;
+    transition: color 0.2s ease;
+    text-decoration: none !important;
+    padding: 0.5rem 0;
+  }
+  
+  .gp-navbar-link:hover {
+    color: #2563eb;
+  }
+  
+  .gp-navbar-actions {
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    .gp-navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+  
+  .gp-navbar-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  @media (min-width: 768px) {
+    .gp-navbar-menu-button {
+      display: none;
+    }
+  }
+  
+  .gp-navbar-menu-button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #1e293b;
+  }
+  
+  .gp-mobile-menu {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 40;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .gp-mobile-menu.active {
+    transform: translateX(0);
+  }
+  
+  .gp-mobile-link {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1e293b;
+    border-bottom: 1px solid #f1f5f9;
+    background-color: #f1f5f9;
+    border-radius: 0.5rem;
+    text-decoration: none !important;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .gp-mobile-link:hover {
+    background-color: #e2e8f0;
+  }
+  
+  /* Basic Button Styles - Updated to match design */
+  .gp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none !important;
+    border: none;
+  }
+  
+  .gp-btn-primary {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  .gp-btn-primary:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .gp-btn-secondary {
+    background-color: white;
+    color: #1e293b;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .gp-btn-secondary:hover {
+    background-color: #f8fafc;
+  }
+  
+  /* Animation Keyframes for fade-in effects */
+  @keyframes gpFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .gp-animate-fade-in {
+    animation: gpFadeIn 0.5s ease forwards;
+  }
+  
+  @keyframes gpSlideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-slide-down {
+    animation: gpSlideDown 0.3s ease forwards;
+  }
+</style>
+
+<!-- Navbar -->
+<header class="gp-navbar">
+  <div class="gp-navbar-container">
+    <a href="#hero" class="gp-navbar-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span>globalpassport</span>
+    </a>
+    
+    <nav class="gp-navbar-links">
+      <a href="#hero" class="gp-navbar-link">Home</a>
+      <a href="#discover" class="gp-navbar-link">Discover</a>
+      <a href="#features" class="gp-navbar-link">Features</a>
+      <a href="#workflow" class="gp-navbar-link">How It Works</a>
+    </nav>
+    
+    <div class="gp-navbar-actions">
+      <a href="https://go.globalpassport.ai/sign-in" class="gp-btn gp-btn-secondary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem; border-radius: 2rem;">
+        Sign In
+      </a>
+      <a href="https://go.globalpassport.ai/sign-in" class="gp-btn gp-btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem; border-radius: 2rem;">
+        Get Started
+      </a>
+    </div>
+    
+    <button class="gp-navbar-menu-button" id="menu-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  
+  <div class="gp-mobile-menu" id="mobile-menu">
+    <a href="#hero" class="gp-mobile-link">Home</a>
+    <a href="#discover" class="gp-mobile-link">Discover</a>
+    <a href="#features" class="gp-mobile-link">Features</a>
+    <a href="#workflow" class="gp-mobile-link">How It Works</a>
+    
+    <div style="margin-top: 1rem;">
+      <a href="https://go.globalpassport.ai/sign-in" class="gp-btn gp-btn-secondary" style="width: 100%; margin-bottom: 0.75rem; border-radius: 2rem;">
+        Sign In
+      </a>
+      <a href="https://go.globalpassport.ai/sign-in" class="gp-btn gp-btn-primary" style="width: 100%; border-radius: 2rem;">
+        Get Started
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+      });
+      
+      // Close mobile menu when clicking a link
+      const mobileLinks = document.querySelectorAll('.gp-mobile-link');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+        });
+      });
+    }
+  });
+</script>
