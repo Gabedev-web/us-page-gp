@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple 4-Step Process</title>
+  <style>
+    .gp-process-container * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    .gp-process-container {
+      max-width: 80rem;
+      width: 100%;
+      margin: 0 auto;
+      padding: 40px 20px;
+      text-align: center;
+      background-color: transparent;
+    }
+    
+    .gp-process-header {
+      margin-bottom: 70px;
+    }
+    
+    .gp-process-header h2 {
+      font-size: 32px;
+      color: #1e293b;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    
+    .gp-process-header p {
+      color: #64748b;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .gp-steps-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 40px;
+      width: 100%;
+    }
+    
+    .gp-progress-section {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+    
+    .gp-progress-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #e2e8f0;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+    
+    .gp-progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color: #3b82f6;
+      width: 0;
+      transition: width 0.5s ease;
+      z-index: 2;
+    }
+    
+    .gp-step-circles {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      position: relative;
+      z-index: 3;
+    }
+    
+    .gp-step-circle-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 25%;
+    }
+    
+    .gp-step-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e2e8f0;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    
+    .gp-step-circle.active {
+      background-color: #3b82f6;
+    }
+    
+    .gp-step-content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    
+    .gp-step-content {
+      width: 25%;
+      padding: 0 10px;
+      text-align: center;
+    }
+    
+    .gp-step-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+    
+    .gp-step-title.active {
+      color: #3b82f6;
+    }
+    
+    .gp-step-description {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+    
+    .gp-step-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    
+    .gp-step-btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      outline: none;
+    }
+    
+    .gp-prev-btn {
+      background-color: transparent;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .gp-prev-btn:hover:not(:disabled) {
+      background-color: #f8fafc;
+    }
+    
+    .gp-prev-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .gp-next-btn, .gp-start-over-btn {
+      background-color: #3b82f6;
+      color: white;
+    }
+    
+    .gp-next-btn:hover, .gp-start-over-btn:hover {
+      background-color: #2563eb;
+    }
+    
+    .gp-start-over-btn {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .gp-step-circles {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      
+      .gp-step-circle-wrapper {
+        width: auto;
+      }
+      
+      .gp-progress-line {
+        display: none;
+      }
+      
+      .gp-step-content-wrapper {
+        flex-wrap: wrap;
+      }
+      
+      .gp-step-content {
+        width: 50%;
+        margin-bottom: 30px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .gp-step-content {
+        width: 100%;
+      }
+      
+      .gp-step-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+      }
+      
+      .gp-step-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="gp-process-container">
+    <div class="gp-process-header">
+      <h2>Simple 4-Step Process</h2>
+      <p>Our streamlined application process makes global citizenship attainable in just four simple steps.</p>
+    </div>
+    
+    <div class="gp-steps-wrapper">
+      <div class="gp-progress-section">
+        <div class="gp-progress-line">
+          <div class="gp-progress-fill" id="gp-progress-fill"></div>
+        </div>
+        
+        <div class="gp-step-circles">
+          <div class="gp-step-circle-wrapper">
+            <div class="gp-step-circle active" data-step="1">1</div>
+          </div>
+          <div class="gp-step-circle-wrapper">
+            <div class="gp-step-circle" data-step="2">2</div>
+          </div>
+          <div class="gp-step-circle-wrapper">
+            <div class="gp-step-circle" data-step="3">3</div>
+          </div>
+          <div class="gp-step-circle-wrapper">
+            <div class="gp-step-circle" data-step="4">4</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="gp-step-content-wrapper">
+        <div class="gp-step-content">
+          <div class="gp-step-title active" id="gp-title-1">Discover Programs</div>
+          <div class="gp-step-description">Answer a few questions about your goals, and our AI will recommend the best citizenship programs for you.</div>
+        </div>
+        
+        <div class="gp-step-content">
+          <div class="gp-step-title" id="gp-title-2">Document Collection</div>
+          <div class="gp-step-description">Securely upload required documents and let our system verify your eligibility for your chosen programs.</div>
+        </div>
+        
+        <div class="gp-step-content">
+          <div class="gp-step-title" id="gp-title-3">Application Submission</div>
+          <div class="gp-step-description">We handle the complex paperwork and submit your application to the appropriate government agencies.</div>
+        </div>
+        
+        <div class="gp-step-content">
+          <div class="gp-step-title" id="gp-title-4">Passport Approval</div>
+          <div class="gp-step-description">Receive your new passport or residency card and enjoy expanded global access and opportunities.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="gp-step-buttons">
+      <button class="gp-step-btn gp-prev-btn" id="gp-prev-btn" disabled>Previous Step</button>
+      <button class="gp-step-btn gp-next-btn" id="gp-next-btn">Next Step</button>
+      <button class="gp-step-btn gp-start-over-btn" id="gp-start-over-btn">Start Over</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Select elements safely
+      const stepCircles = document.querySelectorAll('.gp-step-circle');
+      const stepTitles = document.querySelectorAll('.gp-step-title');
+      const progressFill = document.querySelector('.gp-progress-fill');
+      const prevBtn = document.getElementById('gp-prev-btn');
+      const nextBtn = document.getElementById('gp-next-btn');
+      const startOverBtn = document.getElementById('gp-start-over-btn');
+      
+      if (!stepCircles.length || !progressFill || !prevBtn || !nextBtn || !startOverBtn) {
+        console.error('Could not find required elements');
+        return;
+      }
+      
+      let currentStep = 1;
+      const totalSteps = stepCircles.length;
+      
+      // Initialize progress
+      updateProgress();
+      
+      // Previous button click handler
+      prevBtn.addEventListener('click', function() {
+        if (currentStep > 1) {
+          setActiveStep(currentStep - 1);
+        }
+      });
+      
+      // Next button click handler
+      nextBtn.addEventListener('click', function() {
+        if (currentStep < totalSteps) {
+          setActiveStep(currentStep + 1);
+        }
+      });
+      
+      // Start Over button click handler
+      startOverBtn.addEventListener('click', function() {
+        // Reset to step 1
+        setActiveStep(1);
+      });
+      
+      function setActiveStep(stepNum) {
+        // Add a transition animation when going back to step 1 from step 4
+        if (currentStep === totalSteps && stepNum === 1) {
+          // First quickly reset to 0 width with no transition
+          progressFill.style.transition = 'none';
+          progressFill.style.width = '0%';
+          
+          // Force layout reflow to ensure the style change takes effect immediately
+          void progressFill.offsetWidth;
+          
+          // Then restore the transition for smooth animation
+          progressFill.style.transition = 'width 0.5s ease';
+        }
+        
+        currentStep = stepNum;
+        
+        // Update active state for circles
+        stepCircles.forEach((circle) => {
+          const stepNumber = parseInt(circle.getAttribute('data-step'));
+          if (stepNumber <= currentStep) {
+            circle.classList.add('active');
+          } else {
+            circle.classList.remove('active');
+          }
+        });
+        
+        // Update active state for titles
+        stepTitles.forEach((title, index) => {
+          if (index + 1 <= currentStep) {
+            title.classList.add('active');
+          } else {
+            title.classList.remove('active');
+          }
+        });
+        
+        // Update buttons
+        prevBtn.disabled = currentStep === 1;
+        
+        if (currentStep === totalSteps) {
+          nextBtn.style.display = 'none';
+          startOverBtn.style.display = 'block';
+        } else {
+          nextBtn.style.display = 'block';
+          startOverBtn.style.display = 'none';
+        }
+        
+        // Update progress bar
+        updateProgress();
+      }
+      
+      function updateProgress() {
+        // Calculate fill percentage based on active steps
+        // For 4 steps, we have 3 segments (between steps)
+        const percentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
+        progressFill.style.width = `${percentage}%`;
+      }
+    });
+  </script>
+</body>
+</html>
