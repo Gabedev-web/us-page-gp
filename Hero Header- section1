@@ -1,0 +1,429 @@
+<!-- GlobalPassport Landing Page - Section 2: Hero Section -->
+<style>
+  /* Hero section styles */
+  .gp-hero {
+    padding: 8rem 0 6rem 0; /* Increased padding top and bottom */
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #f0f7ff, #edf2fe);
+  }
+  
+  .gp-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .gp-hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    z-index: 10;
+  }
+  
+  @media (min-width: 768px) {
+    .gp-hero-container {
+      text-align: left;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+  }
+  
+  .gp-hero-content {
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .gp-hero-content {
+      margin-bottom: 0;
+    }
+  }
+  
+  .gp-hero-subtitle {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    background-color: rgba(66, 133, 244, 0.1);
+    color: #4285F4;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gp-hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #1a202c;
+  }
+  
+  @media (min-width: 640px) {
+    .gp-hero-title {
+      font-size: 4rem;
+    }
+  }
+  
+  .gp-hero-description {
+    font-size: 1.125rem;
+    color: #64748b;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .gp-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+  
+  .gp-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .gp-btn-primary {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  .gp-btn-primary:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .gp-btn-secondary {
+    background-color: white;
+    color: #2563eb;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .gp-btn-secondary:hover {
+    background-color: #f8fafc;
+  }
+  
+  .gp-hero-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  
+  .gp-hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .gp-bg-gradient {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(66, 133, 244, 0.15) 0%, rgba(66, 133, 244, 0) 70%);
+    z-index: 0;
+  }
+  
+  .gp-bg-gradient-2 {
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(66, 133, 244, 0.1) 0%, rgba(66, 133, 244, 0) 70%);
+    z-index: 0;
+  }
+  
+  .gp-highlight {
+    color: #2563eb;
+    font-weight: 700;
+  }
+  
+  /* Stats bar */
+  .gp-stats-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+  }
+  
+  .gp-stats-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .gp-stats-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #f0f7ff;
+  }
+  
+  .gp-stats-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #2563eb;
+  }
+  
+  .gp-stats-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .gp-stats-number {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1a202c;
+  }
+  
+  .gp-stats-label {
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+  
+ .gp-country-tags {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.gp-country-tag {
+  background-color: white;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: absolute;
+}
+
+/* These selectors need to apply directly to each tag */
+.gp-country-tag:nth-of-type(1) {
+  top: 0;
+  right: 10%;
+}
+
+.gp-country-tag:nth-of-type(2) {
+  top: 20%;
+  right: -5%;
+}
+
+.gp-country-tag:nth-of-type(3) {
+  top: 40%;
+  right: 15%;
+}
+
+.gp-country-tag:nth-of-type(4) {
+  top: 60%;
+  right: -10%;
+}
+
+.gp-country-tag:nth-of-type(5) {
+  top: 80%;
+  right: 5%;
+}
+  
+  .gp-country-tag svg {
+    width: 1rem;
+    height: 1rem;
+    color: #2563eb;
+  }
+  
+  .gp-passport-mockup {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  
+  .gp-passport-mockup {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    background-color: white;
+  }
+  
+  .gp-card-header {
+    background-color: #2563eb;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+  
+  .gp-card-header-icon {
+    width: 60px;
+    height: 60px;
+    color: white;
+  }
+  
+  .gp-card-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .gp-card-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #e5e7eb;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gp-card-line {
+    width: 80%;
+    height: 12px;
+    background-color: #e5e7eb;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .gp-card-line:last-child {
+    width: 60%;
+  }
+</style>
+
+<!-- Hero Section -->
+<section id="hero" class="gp-hero">
+  <div class="gp-bg-gradient"></div>
+  <div class="gp-bg-gradient-2"></div>
+  
+  <div class="gp-container">
+    <div class="gp-hero-container">
+      <div class="gp-hero-content">
+        <span class="gp-hero-subtitle">Your Global Mobility Solution</span>
+        <h1 class="gp-hero-title">GlobalPassport: <span class="gp-highlight">Citizenship Solutions</span> Made Simple</h1>
+        <p class="gp-hero-description">
+          Navigate global citizenship and residency options with ease. Our platform simplifies complex immigration processes into a streamlined, intelligent workflow.
+        </p>
+        <div class="gp-hero-actions">
+          <a href="#cta" class="gp-btn gp-btn-primary">Get Started</a>
+          <a href="#programs" class="gp-btn gp-btn-secondary">Explore Countries</a>
+        </div>
+        
+        <div class="gp-stats-container">
+          <div class="gp-stats-item">
+            <div class="gp-stats-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div class="gp-stats-text">
+              <div class="gp-stats-number">200+ Countries</div>
+              <div class="gp-stats-label">In our database</div>
+            </div>
+          </div>
+          
+          <div class="gp-stats-item">
+            <div class="gp-stats-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div class="gp-stats-text">
+              <div class="gp-stats-number">100% Secure</div>
+              <div class="gp-stats-label">End-to-end encryption</div>
+            </div>
+          </div>
+          
+          <div class="gp-stats-item">
+            <div class="gp-stats-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <div class="gp-stats-text">
+              <div class="gp-stats-number">AI-Powered</div>
+              <div class="gp-stats-label">Document analysis</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="gp-hero-image-container">
+        <div class="gp-country-tags">
+          <div class="gp-country-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Portugal
+          </div>
+          <div class="gp-country-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Canada
+          </div>
+          <div class="gp-country-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Poland
+          </div>
+          <div class="gp-country-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Spain
+          </div>
+          <div class="gp-country-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Germany
+          </div>
+        </div>
+        
+        <div class="gp-passport-mockup">
+          <div class="gp-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="gp-card-header-icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="gp-card-body">
+            <div class="gp-card-avatar"></div>
+            <div class="gp-card-line"></div>
+            <div class="gp-card-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
